@@ -1,0 +1,71 @@
+﻿body, main, header, footer {
+    width: 100%;
+}
+
+body, main {
+    min-height: 90vh;
+}
+
+main {
+    background-color: dimgray;
+}
+
+.navHeader {
+    background-color: azure;
+}
+
+
+.postdeck {
+    padding: 3em;
+}
+
+.postCard {
+    width: 15em;
+    background-color: azure;
+    margin-top: 1em;
+    padding: .25em;
+}
+
+.postCard h5{
+    font-size: 1em;
+}
+
+.postCard h6 {
+    font-size: .6em;
+}
+
+.postView {
+    width: 60%;
+    text-align: center;
+    margin: 0 auto;
+    height: 80%;
+    border-radius: 5px;
+}
+
+.postView * {
+    margin: .1em auto;
+    display: block;
+    text-align: center;
+    border-radius: 2px;
+}
+
+comment {
+    background-color: lightgrey;
+    border-radius: 2px;
+    color: darkgrey;
+}
+
+comment h6 {
+    color: Highlight;
+}
+
+.addPostButton {
+    position: fixed;
+    bottom: 1em;
+    right: 1em;
+}
+
+footer {
+    text-align: center;
+}
+

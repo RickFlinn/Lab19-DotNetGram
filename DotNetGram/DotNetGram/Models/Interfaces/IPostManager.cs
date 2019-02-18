@@ -15,5 +15,8 @@ namespace DotNetGram.Models.Interfaces
         Task<IEnumerable<Post>> GetAllAsync();
 
         Task DeleteAsync(int postID);
+        
+
+
     }
 }

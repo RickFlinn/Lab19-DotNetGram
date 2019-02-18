@@ -17,26 +17,16 @@ namespace DotNetGram.Models.Services
             _context = context;
         }
 
-
-        public async Task DeleteAsync(int postID)
+        public async Task<Post> GetAsync(int postID)
         {
-            Post post = await _context.Posts.FindAsync(postID);
-            if (post != null)
-            {
-                _context.Remove(post);
-                await _context.SaveChangesAsync();
-            }
+            return await _context.Posts.Where(p => p.ID == postID)
+                                        .Include(p => p.Comments)
+                                        .FirstOrDefaultAsync();
         }
-
-
+        
         public async Task<IEnumerable<Post>> GetAllAsync()
         {
             return await _context.Posts.ToListAsync();          
-        }
-
-        public async Task<Post> GetAsync(int postID)
-        {
-            return await _context.Posts.FindAsync(postID);
         }
 
         public async Task SaveAsync(Post nuPost)
@@ -50,6 +40,16 @@ namespace DotNetGram.Models.Services
                 _context.Update(nuPost);
             }
             await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteAsync(int postID)
+        {
+            Post post = await _context.Posts.FindAsync(postID);
+            if (post != null)
+            {
+                _context.Remove(post);
+                await _context.SaveChangesAsync();
+            }
         }
     }
 }

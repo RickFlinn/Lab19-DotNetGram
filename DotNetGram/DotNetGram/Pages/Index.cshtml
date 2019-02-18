@@ -1,8 +1,31 @@
 ﻿@page
 @model DotNetGram.Pages.IndexModel
+@using DotNetGram.Models;
 @{
-    Layout = "Shared/_Layout";
+    Layout = "_Layout";
 }
 
+<form class="addPostButton" method="get" action="/Posts/View">
+    <button class="rounded bg-light" type="submit">+ Create New Post</button>
+</form>
 
+
+<div class="container-fluid">
+    <div class="row">
+       @foreach (Post post in Model.Posts)
+        {
+            <div class="col">
+                <a asp-page="Posts/View" asp-route-id="@post.ID">
+                    <div class="card postCard">
+                        <img src="@post.ImageUrl" class="card-img-top" alt="user posted image #@post.ID: @post.Description" />
+                        <div class="card-body">
+                            <h5 class="card-title">@post.Title</h5>
+                            <h6 class="card-subtitle">@post.Author</h6>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+</div>
 
