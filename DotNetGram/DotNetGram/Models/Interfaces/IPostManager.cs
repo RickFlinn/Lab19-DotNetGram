@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace DotNetGram.Models.Interfaces
 {
-    interface IPostManager
+    public interface IPostManager
     {
 
         Task SaveAsync(Post post);

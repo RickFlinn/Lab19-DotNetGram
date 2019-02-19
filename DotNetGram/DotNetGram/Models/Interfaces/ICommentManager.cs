@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace DotNetGram.Models.Interfaces
 {
-    interface ICommentManager
+    public interface ICommentManager
     {
         Task SaveAsync(Comment comment);
 

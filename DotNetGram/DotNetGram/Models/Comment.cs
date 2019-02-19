@@ -7,8 +7,7 @@
 
         public string Author { get; set; }
         public string Content { get; set; }
-
-
+        
         // Navigation Properties
 
         public int PostID { get; set; }

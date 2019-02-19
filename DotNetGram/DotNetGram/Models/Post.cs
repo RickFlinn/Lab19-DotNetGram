@@ -10,10 +10,8 @@ namespace DotNetGram.Models
         public string Title { get; set; }
         public string Description { get; set; }
         public string Author { get; set; }
-        // To be replaced
-
+        // To be replaced by Azure Blob image
         public string ImageUrl { get; set; }
-
 
         // Navigation Properties
         public List<Comment> Comments { get; set; }

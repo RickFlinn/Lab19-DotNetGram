@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DotNetGram.Data;
+using DotNetGram.Models.Interfaces;
+using DotNetGram.Models.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -27,9 +30,13 @@ namespace DotNetGram
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddDbContext<NetGramDbContext>(options =>
-                options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
-            
+
+            services.AddDbContext<NetGramDbContext>(
+                options =>
+                 options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+
+            services.AddScoped<ICommentManager, Commentifier>();
+            services.AddScoped<IPostManager, Posterizer>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
