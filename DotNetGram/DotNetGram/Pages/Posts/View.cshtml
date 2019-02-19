@@ -1,8 +1,58 @@
-﻿@page
+﻿@page "{id?}"
 @model DotNetGram.Pages.Posts.ViewModel
+@using DotNetGram.Models;
 @{
-    Layout = "../Shared/_Layout";
+    Layout = "_Layout";
+    
 }
+
+<div class="postView bg-light">
+    <div class="postDetails toggleHidden">
+        <img src="@Model.Post.ImageUrl" />
+        <h4>@Model.Post.Title</h4>
+        <h5>@Model.Post.Author</h5>
+        <p>@Model.Post.Description</p>
+        <button class="btn btn-warning text-white" id="editToggler">Edit</button>
+    </div>
+
+    <form class="startHidden toggleHidden" method="post" enctype="application/x-www-form-urlencoded">
+        <input type="file" accept="image/*" asp-for="ImageUpload" />
+        <input type="text" asp-for="Post.Title" value="@Model.Post.Title" />
+        <input type="text" asp-for="Post.Author" value="@Model.Post.Author" />
+        <input type="text" asp-for="Post.Description" value="@Model.Post.Description" />
+        <button class="btn btn-primary" type="submit">Save</button>
+    </form>
+
+    <button class="btn btn-danger" type="submit" asp-page-handler="DELETE">Delete</button>
+
+    <ul class="comments toggleHidden">
+       @foreach (Comment comment in Model.Post.Comments)
+        {
+            <li>
+                <div class="comment">
+                    <h6>@comment.Author</h6>
+                    <p>@comment.Content</p>
+                </div>
+            </li>
+        }
+    </ul>
+</div>
+
+
+<script>
+    $(function () { 
+        $(".startHidden").toggle(); // Hides form
+
+        if (!@Html.Raw(Model.Post.ID)) {
+            $(".toggleHidden").toggle(); // If we're not looking at a post that exists, we're creating one - hide details and show form
+        }
+
+        $("#editToggler").click(function () {
+            $(".toggleHidden").toggle(); // When user selects "edit", hide the post details and show the form so they can edit the post
+        });
+    });
+
+</script>
 
 
 

@@ -22,7 +22,7 @@ namespace DotNetGram.Data
                     ID = 1,
                     Title = "Best Ever Coffee Pic",
                     Description = "Flavored Latte with a pretty little swirleydoo",
-                    ImageUrl = "igmru.com/asdf",
+                    ImageUrl = "https://via.placeholder.com/150",
                     Author = "Sally"
                 },
                 new Post
@@ -30,7 +30,7 @@ namespace DotNetGram.Data
                     ID = 2,
                     Title = "MY DOG IS THE CUTEST",
                     Description = "We were worried hey might eat them but Max has happily adopted this horde of super-fluffy baby chicks and also kittens!!!!",
-                    ImageUrl = "igmru.com/KYUTEAF",
+                    ImageUrl = "https://via.placeholder.com/150",
                     Author = "Bob The Doggo Owner"
                 },
                 new Post
@@ -38,7 +38,7 @@ namespace DotNetGram.Data
                     ID = 3,
                     Title = "Sweet Graffiti Someone Painted On My Car",
                     Description = "Work of art! So subversive! Banksy Original?!?",
-                    ImageUrl = "igmru/TRUEART",
+                    ImageUrl = "https://via.placeholder.com/150",
                     Author = "Maybe I'M Banksy and forgot?!?"
                 },
                 new Post
@@ -46,7 +46,7 @@ namespace DotNetGram.Data
                     ID = 4,
                     Title = "Tattoo That I Do Not In Any Way, Shape or Form Regret",
                     Description = "No really, I put a lot of thought into this. I am very cautious about getting tattoos and I am following my genuine passion for body modifications.",
-                    ImageUrl = "igmru/SuperSickTat",
+                    ImageUrl = "https://via.placeholder.com/150",
                     Author = "Sally's Cool Older Sister"
                 },
                 new Post
@@ -54,7 +54,7 @@ namespace DotNetGram.Data
                     ID = 5,
                     Title = "Picture of Food You're Not Eating!",
                     Description = "**Insert Cliche Satire of Instagram Food Pics",
-                    ImageUrl = "igmru/ALovelyDinner",
+                    ImageUrl = "https://via.placeholder.com/150",
                     Author = "Guy who actually really cares about food and/or my dad"
                 });
 
