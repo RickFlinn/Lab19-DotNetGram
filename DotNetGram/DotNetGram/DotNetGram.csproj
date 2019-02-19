@@ -7,9 +7,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Connected Services\AzureStorage1\**" />
+    <Compile Remove="Connected Services\Key Vault\**" />
+    <Content Remove="Connected Services\AzureStorage1\**" />
+    <Content Remove="Connected Services\Key Vault\**" />
+    <EmbeddedResource Remove="Connected Services\AzureStorage1\**" />
+    <EmbeddedResource Remove="Connected Services\Key Vault\**" />
+    <None Remove="Connected Services\AzureStorage1\**" />
+    <None Remove="Connected Services\Key Vault\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="bootstrap" Version="4.2.1" />
     <PackageReference Include="jQuery" Version="3.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.AzureKeyVault.HostingStartup" Version="2.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.2" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
@@ -17,7 +29,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Connected Services\" />
     <Folder Include="Pages\Shared\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services" />
   </ItemGroup>
 
 </Project>
