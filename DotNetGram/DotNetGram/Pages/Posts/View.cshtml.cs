@@ -9,6 +9,8 @@ using DotNetGram.Models.Interfaces;
 using Microsoft.AspNetCore.Http;
 using DotNetGram.Models.Util;
 using Microsoft.Extensions.Configuration;
+using System.IO;
+using Microsoft.WindowsAzure.Storage.Blob;
 
 namespace DotNetGram.Pages.Posts
 {
@@ -23,7 +25,7 @@ namespace DotNetGram.Pages.Posts
         {
             _postMinion = postMinion;
             _commentMinion = commentMinion;
-            BlobImage = new TheBlob(configuration);
+            BlobRoss = new TheBlob(configuration);
         }
 
 
@@ -36,7 +38,7 @@ namespace DotNetGram.Pages.Posts
         [BindProperty]
         public IFormFile ImageUpload { get; set; }
 
-        public TheBlob BlobImage { get; set; }
+        public TheBlob BlobRoss { get; set; }
 
         public async Task OnGet()
         {   
@@ -58,8 +60,19 @@ namespace DotNetGram.Pages.Posts
                 Post post = await _postMinion.GetAsync(ID??0) ?? new Post();
                 post.Title = Post.Title;
                 post.Author = Post.Author;
-                //post.ImageUrl = Post.ImageUrl;
                 post.Description = Post.Description;
+
+                if (ImageUpload != null)
+                {
+                    string tempFilePath = Path.GetTempFileName();
+                    using (FileStream stream = new FileStream(tempFilePath, FileMode.Create))
+                    {
+                        await ImageUpload.CopyToAsync(stream);
+                    }
+
+                    post.ImageUrl = await BlobRoss.UploadBlob("images", ImageUpload.FileName, tempFilePath);
+                    
+                }
 
                 await _postMinion.SaveAsync(post);
 
@@ -75,10 +88,11 @@ namespace DotNetGram.Pages.Posts
 
         public async Task<IActionResult> OnPostDelete()
         {
-            
             try
             {
-                await _postMinion.DeleteAsync(ID??0);
+                if (ID != null && ID > 0)
+                    await _postMinion.DeleteAsync((int)ID);
+
                 return RedirectToPage("../Index");
 
             } catch (Exception e)
@@ -86,8 +100,6 @@ namespace DotNetGram.Pages.Posts
                 ViewData["ErrorMessage"] = e.Message;
                 return RedirectToPage("/", new { id = ID});
             }
-            
-
         }
     }
 }
