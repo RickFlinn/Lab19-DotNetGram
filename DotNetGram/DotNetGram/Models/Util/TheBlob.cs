@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DotNetGram.Models.Util
 {
-    
+
     public class TheBlob
     {
         public CloudStorageAccount CloudStorageAccount { get; set; }
@@ -28,7 +28,7 @@ namespace DotNetGram.Models.Util
         {
             CloudBlobContainer containerRef = CloudBlobClient.GetContainerReference(containerName);
             await containerRef.CreateIfNotExistsAsync();
-            await containerRef.SetPermissionsAsync( new BlobContainerPermissions
+            await containerRef.SetPermissionsAsync(new BlobContainerPermissions
                                                     { PublicAccess = BlobContainerPublicAccessType.Blob });
             return containerRef;
         }
@@ -41,12 +41,19 @@ namespace DotNetGram.Models.Util
 
         }
 
-        public async Task<string> UploadAndGetLink(string containerName, IFormFile file)
+        public async Task<string> UploadBlob(string containerName, string fileName, string filePath)
         {
-            string filePath = Path.GetTempFileName();
-
-            //using (var )
+            CloudBlobContainer container = await GetContainer(containerName);
+            return await UploadBlob(container, fileName, filePath);
+            
         }
-        
+
+        // Uploads the file at the given file path to a blob container with the given file name, and returns the Uri to that blob object.
+        public async Task<string> UploadBlob(CloudBlobContainer container, string fileName, string filePath)
+        {
+            CloudBlockBlob blobRef = container.GetBlockBlobReference(fileName);
+            await blobRef.UploadFromFileAsync(filePath);
+            return blobRef.Uri.AbsoluteUri;
+        }
     }
 }
