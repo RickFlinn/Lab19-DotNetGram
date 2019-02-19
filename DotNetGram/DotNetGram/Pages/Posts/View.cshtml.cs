@@ -44,7 +44,18 @@ namespace DotNetGram.Pages.Posts
         {   
             try
             {
-                Post = await _postMinion.GetAsync(ID??0) ?? new Post();
+                if (ID == null || ID == 0)
+                {
+                    Post = new Post();
+                    Post.Author = "";
+                    Post.Description = "";
+                    Post.Title = "";
+                    Post.Comments = new List<Comment>();
+                } else
+                {
+                    Post = await _postMinion.GetAsync((int)ID) ?? new Post();
+                }
+                
 
             } catch (Exception e)
             {

@@ -5,9 +5,10 @@
     Layout = "_Layout";
 }
 
-<form class="addPostButton" method="get" action="/Posts/View">
-    <button class="rounded bg-light" type="submit">+ Create New Post</button>
-</form>
+<a asp-page="Posts/View" asp-route-id="0">
+    <div class="btn bg-light" type="submit">+ Create New Post</div>
+</a>
+
 
 
 <div class="container-fluid">
