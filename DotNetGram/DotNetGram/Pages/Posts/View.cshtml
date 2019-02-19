@@ -15,8 +15,9 @@
         <button class="btn btn-warning text-white" id="editToggler">Edit</button>
     </div>
 
-    <form class="startHidden toggleHidden" method="post" enctype="application/x-www-form-urlencoded">
-        <input type="file" accept="image/*" asp-for="ImageUpload" />
+    <form class="startHidden toggleHidden" method="post" enctype="multipart/form-data">
+
+        <input type="file" asp-for="ImageUpload" />
         <input type="text" asp-for="Post.Title" value="@Model.Post.Title" />
         <input type="text" asp-for="Post.Author" value="@Model.Post.Author" />
         <input type="text" asp-for="Post.Description" value="@Model.Post.Description" />
